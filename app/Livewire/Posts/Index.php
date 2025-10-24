@@ -60,6 +60,8 @@ class Index extends Component
         $this->delete($this->deleteId);
         $this->confirmingDelete = false;
         $this->deleteId = null;
+
+        session()->flash('delete_message', 'Post deleted successfully!');
     }
 
     public function render()

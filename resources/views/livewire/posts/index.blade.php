@@ -21,6 +21,19 @@
                 </div>
             @endif
 
+            @if (session()->has('delete_message'))
+                <div
+                    class="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-lg mb-6 shadow-sm message-fade flex items-center gap-3">
+                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M8.257 3.099c.366-.446.957-.446 1.323 0l7.071 8.626c.33.403.016 1.025-.661 1.025H1.847c-.677 0-.991-.622-.661-1.025l7.071-8.626z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="font-medium">{{ session('delete_message') }}</span>
+                </div>
+            @endif
+
+
             <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
                 <table class="w-full">
                     <thead class="bg-gradient-to-r from-gray-100 to-gray-50">
@@ -79,41 +92,42 @@
 
     <!-- Delete Confirmation Modal -->
     @if ($confirmingDelete)
-    <div class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4 text-center animate-fade-in">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3">Confirm Deletion</h2>
-            <p class="text-gray-600 mb-6">
-                Are you sure you want to delete this post? This action cannot be undone.
-            </p>
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div
+                class="bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4 text-center animate-fade-in">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Confirm Deletion</h2>
+                <p class="text-gray-600 mb-6">
+                    Are you sure you want to delete this post? This action cannot be undone.
+                </p>
 
-            <div class="flex justify-center space-x-4">
-                <button wire:click="deleteConfirmed"
-                    class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition">
-                    Yes, Delete
-                </button>
-                <button wire:click="$set('confirmingDelete', false)"
-                    class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2 rounded-lg font-medium transition">
-                    Cancel
-                </button>
+                <div class="flex justify-center space-x-4">
+                    <button wire:click="deleteConfirmed"
+                        class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-medium transition">
+                        Yes, Delete
+                    </button>
+                    <button wire:click="$set('confirmingDelete', false)"
+                        class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-5 py-2 rounded-lg font-medium transition">
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <style>
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(-10px) scale(0.96);
+        <style>
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px) scale(0.96);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+            .animate-fade-in {
+                animation: fade-in 0.25s ease-out;
             }
-        }
-
-        .animate-fade-in {
-            animation: fade-in 0.25s ease-out;
-        }
-    </style>
-@endif
+        </style>
+    @endif
