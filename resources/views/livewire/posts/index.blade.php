@@ -5,7 +5,7 @@
                 <h1 class="text-4xl font-bold text-gray-900">Posts</h1>
                 <button wire:click="create"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-200">
-                    + New Post
+                    + Add New Post
                 </button>
             </div>
 

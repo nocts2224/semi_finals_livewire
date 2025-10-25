@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/index', PostsIndex::class);
+Route::get('/index', PostsIndex::class)->name('posts.index');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

@@ -4,11 +4,11 @@ namespace App\Livewire\Posts;
 
 use Livewire\Component;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
     public $title;
-    public $author;
     public $content;
     public $showForm = false;
 
@@ -21,20 +21,20 @@ class Create extends Component
 
     public function cancel()
     {
-        $this->reset(['title', 'author', 'content', 'showForm']);
+        $this->reset(['title', 'content', 'showForm']);
     }
 
     public function save()
     {
         $this->validate([
             'title' => 'required|min:3',
-            'author' => 'required|min:3',
             'content' => 'required|min:10',
         ]);
 
+        // Automatically set author from logged-in user
         Post::create([
-            'title' => $this->title,
-            'author' => $this->author,
+            'title'   => $this->title,
+            'author'  => Auth::user()->name, // or Auth::id() if you use user_id
             'content' => $this->content,
         ]);
 

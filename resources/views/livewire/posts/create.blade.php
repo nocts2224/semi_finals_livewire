@@ -11,15 +11,6 @@
     </div>
 
     <div class="mb-6">
-        <label class="block mb-2 font-semibold text-gray-700 text-sm uppercase tracking-wide">Author</label>
-        <input type="text" wire:model="author"
-            class="w-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3 rounded-lg shadow-sm transition-all duration-200 hover:border-gray-400">
-        @error('author')
-            <span class="text-red-600 text-sm mt-1.5 block font-medium">{{ $message }}</span>
-        @enderror
-    </div>
-
-    <div class="mb-6">
         <label class="block mb-2 font-semibold text-gray-700 text-sm uppercase tracking-wide">Content</label>
         <textarea wire:model="content" rows="6"
             class="w-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3 rounded-lg shadow-sm transition-all duration-200 hover:border-gray-400 resize-y"></textarea>

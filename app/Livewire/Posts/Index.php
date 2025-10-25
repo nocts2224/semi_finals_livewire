@@ -4,11 +4,11 @@ namespace App\Livewire\Posts;
 
 use App\Models\Post;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
     public $title;
-    public $author;
     public $content;
     public $showForm = false;
     public $confirmingDelete = false;
@@ -21,26 +21,26 @@ class Index extends Component
 
     public function cancel()
     {
-        $this->reset(['title', 'author', 'content', 'showForm']);
+        $this->reset(['title', 'content', 'showForm']);
     }
 
     public function save()
-    {
-        $this->validate([
-            'title' => 'required|min:3',
-            'author' => 'required|min:3',
-            'content' => 'required|min:10',
-        ]);
+{
+    $this->validate([
+        'title' => 'required|min:3',
+        'content' => 'required|min:10',
+    ]);
 
-        Post::create([
-            'title' => $this->title,
-            'author' => $this->author,
-            'content' => $this->content,
-        ]);
+    Post::create([
+        'title' => $this->title,
+        'author' => Auth::user()->name,
+        'content' => $this->content,
+    ]);
 
-        session()->flash('message', 'Post created successfully!');
-        $this->cancel();
-    }
+    session()->flash('message', 'Post created successfully!');
+    $this->cancel();
+}
+
 
     public function delete($id)
     {
