@@ -38,25 +38,20 @@
                 <table class="w-full">
                     <thead class="bg-gradient-to-r from-gray-100 to-gray-50">
                         <tr>
-                            <th
-                                class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">
-                                ID</th>
-                            <th
-                                class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">
-                                Title</th>
-                            <th
-                                class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">
-                                Content</th>
-                            <th
-                                class="border-b-2 border-gray-200 p-4 text-center font-bold text-gray-700 text-sm uppercase tracking-wider">
-                                Action</th>
+                            <th class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">ID</th>
+                            <th class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">Title</th>
+                            <th class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">Author</th>
+                            <th class="border-b-2 border-gray-200 p-4 text-left font-bold text-gray-700 text-sm uppercase tracking-wider">Content</th>
+                            <th class="border-b-2 border-gray-200 p-4 text-center font-bold text-gray-700 text-sm uppercase tracking-wider">Action</th>
                         </tr>
                     </thead>
+
                     <tbody class="divide-y divide-gray-200">
                         @forelse($posts as $post)
                             <tr class="hover:bg-gray-50 transition-colors duration-150">
                                 <td class="p-4 text-gray-600 font-medium">{{ $post->id }}</td>
                                 <td class="p-4 font-semibold text-gray-900">{{ $post->title }}</td>
+                                <td class="p-4 text-gray-600">{{ $post->author }}</td>
                                 <td class="p-4 text-gray-600">{{ $post->content }}</td>
                                 <td class="p-4 text-center">
                                     <button wire:click="confirmDelete({{ $post->id }})"

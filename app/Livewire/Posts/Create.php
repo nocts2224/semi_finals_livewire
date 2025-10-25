@@ -8,6 +8,7 @@ use App\Models\Post;
 class Create extends Component
 {
     public $title;
+    public $author;
     public $content;
     public $showForm = false;
 
@@ -20,28 +21,26 @@ class Create extends Component
 
     public function cancel()
     {
-        $this->showForm = false;
-        $this->title = '';
-        $this->content = '';
+        $this->reset(['title', 'author', 'content', 'showForm']);
     }
 
     public function save()
     {
         $this->validate([
             'title' => 'required|min:3',
+            'author' => 'required|min:3',
             'content' => 'required|min:10',
         ]);
 
         Post::create([
             'title' => $this->title,
-            'content' => $this->content
+            'author' => $this->author,
+            'content' => $this->content,
         ]);
 
-        // Use dispatch instead of emit for Livewire v3
         $this->dispatch('postAdded');
         $this->cancel();
 
-        // Optional: Add success message
         session()->flash('message', 'Post created successfully!');
     }
 

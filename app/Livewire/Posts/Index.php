@@ -8,13 +8,10 @@ use Livewire\Component;
 class Index extends Component
 {
     public $title;
-
+    public $author;
     public $content;
-
     public $showForm = false;
-
     public $confirmingDelete = false;
-
     public $deleteId = null;
 
     public function create()
@@ -24,29 +21,30 @@ class Index extends Component
 
     public function cancel()
     {
-        $this->reset(['title', 'content']);
-        $this->showForm = false;
+        $this->reset(['title', 'author', 'content', 'showForm']);
     }
 
     public function save()
     {
         $this->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|min:3',
+            'author' => 'required|min:3',
+            'content' => 'required|min:10',
         ]);
 
         Post::create([
             'title' => $this->title,
+            'author' => $this->author,
             'content' => $this->content,
         ]);
 
         session()->flash('message', 'Post created successfully!');
-        $this->cancel(); // return to table
+        $this->cancel();
     }
 
     public function delete($id)
     {
-        Post::find($id)->delete();
+        Post::find($id)?->delete();
     }
 
     public function confirmDelete($id)
