@@ -34,7 +34,7 @@ class Create extends Component
         // Automatically set author from logged-in user
         Post::create([
             'title'   => $this->title,
-            'author'  => Auth::user()->name, // or Auth::id() if you use user_id
+            'author'  => Auth::id(), // or Auth::id() if you use user_id
             'content' => $this->content,
         ]);
 

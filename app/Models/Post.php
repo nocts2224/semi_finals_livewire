@@ -14,4 +14,8 @@ class Post extends Model
         'author',
         'content'
     ];
+    public function authorUser()
+    {
+        return $this->belongsTo(User::class, 'author'); // 'author' column stores user ID
+    }
 }

@@ -33,7 +33,7 @@ class Index extends Component
 
     Post::create([
         'title' => $this->title,
-        'author' => Auth::user()->name,
+        'author' => Auth::id(),
         'content' => $this->content,
     ]);
 

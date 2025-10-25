@@ -24,10 +24,9 @@
             @if (session()->has('delete_message'))
                 <div
                     class="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-lg mb-6 shadow-sm message-fade flex items-center gap-3">
-                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M8.257 3.099c.366-.446.957-.446 1.323 0l7.071 8.626c.33.403.016 1.025-.661 1.025H1.847c-.677 0-.991-.622-.661-1.025l7.071-8.626z"
-                            clip-rule="evenodd" />
+                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M9 3a1 1 0 00-1 1v1H4a1 1 0 100 2h16a1 1 0 100-2h-4V4a1 1 0 00-1-1H9zm-3 6a1 1 0 011 1v10a2 2 0 002 2h6a2 2 0 002-2V10a1 1 0 112 0v10a4 4 0 01-4 4H9a4 4 0 01-4-4V10a1 1 0 011-1z"/>
                     </svg>
                     <span class="font-medium">{{ session('delete_message') }}</span>
                 </div>
@@ -51,8 +50,8 @@
                             <tr class="hover:bg-gray-50 transition-colors duration-150">
                                 <td class="p-4 text-gray-600 font-medium">{{ $post->id }}</td>
                                 <td class="p-4 font-semibold text-gray-900">{{ $post->title }}</td>
-                                <td class="p-4 text-gray-600">{{ $post->author }}</td>
-                                <td class="p-4 text-gray-600">{{ $post->content }}</td>
+                                <td class="p-4 text-gray-600">{{ $post->authorUser->name }}</td>
+                                <td class="p-4 text-gray-600 break-words max-w-xs">{{ $post->content }}</td>
                                 <td class="p-4 text-center">
                                     <button wire:click="confirmDelete({{ $post->id }})"
                                         class="text-red-600 hover:text-white hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition-all duration-200">
